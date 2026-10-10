@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nitai Weinberg · Projects</title>
+<meta name="description" content="Product builder in Vancouver. Projects on GitHub, labelled honestly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: Kits-at-sunset notebook. Short opener, three strengths, then sections by project status, each card labelled honestly. */
+:root{
+  --bg:#F5F5F4; --surface:#FFFFFF; --fg:#141414; --muted:#5E5E5C; --line:#DEDEDC;
+  --accent:#141414; --accent-soft:#EDEDEB; --sea:#141414; --sea-soft:#EDEDEB;
+  --gold:#141414; --gold-soft:#EDEDEB; --sky:#141414; --sky-soft:#EDEDEB;
+  --display:"Unbounded", "Avenir Next", system-ui, sans-serif;
+  --body:"DM Sans", "Helvetica Neue", system-ui, sans-serif;
+  --mono:"DM Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111111; --surface:#1A1A1A; --fg:#EDEDED; --muted:#A3A3A0; --line:#2C2C2B;
+  --accent:#EDEDED; --accent-soft:#262626; --sea:#EDEDED; --sea-soft:#262626;
+  --gold:#EDEDED; --gold-soft:#262626; --sky:#EDEDED; --sky-soft:#262626; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111111; --surface:#1A1A1A; --fg:#EDEDED; --muted:#A3A3A0; --line:#2C2C2B;
+  --accent:#EDEDED; --accent-soft:#262626; --sea:#EDEDED; --sea-soft:#262626;
+  --gold:#EDEDED; --gold-soft:#262626; --sky:#EDEDED; --sky-soft:#262626; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:20px;padding-block:0}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:80px;padding-block:52px 72px}
+a{color:var(--fg);text-underline-offset:3px;font-weight:600}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1,h2{font-family:var(--display);letter-spacing:-0.02em}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* opener */
+header{display:flex;flex-direction:column;gap:22px}
+header .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+h1{font-size:clamp(32px,5.4vw,58px);line-height:1.08;font-weight:700;max-width:16ch}
+h1 .a{color:var(--accent)} h1 .b{color:var(--sea)} h1 .c{color:var(--sky)}
+.lede{font-size:18.5px;color:var(--muted);max-width:60ch;margin:0}
+
+/* strengths */
+.strengths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.str{background:var(--surface);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.str h3{font-family:var(--display);font-size:17px;font-weight:500}
+.str:nth-child(1) h3{color:var(--accent)} .str:nth-child(2) h3{color:var(--sea)} .str:nth-child(3) h3{color:var(--sky)}
+.str p{margin:0;font-size:15px;color:var(--muted)}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px;color:var(--muted)}
+
+/* sections */
+section{display:flex;flex-direction:column;gap:22px}
+.sh{display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--fg);padding-top:16px}
+.sh h2{font-size:clamp(22px,2.8vw,28px);font-weight:700}
+.sh p{margin:0;color:var(--muted);max-width:60ch;font-size:15px}
+
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--surface);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.card h3{font-family:var(--display);font-size:20px;font-weight:500;line-height:1.2}
+.big .card h3{font-size:24px}
+.card .one{margin:0;font-size:15.5px}
+.card .where{margin:0;font-size:14.5px;color:var(--muted)}
+.card .where b{color:var(--fg);font-weight:600}
+.origin{font-size:13.5px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px;margin:0}
+.links{display:flex;gap:16px;flex-wrap:wrap;margin-top:auto;padding-top:4px;font-size:14.5px}
+
+.tag{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border-radius:99px;white-space:nowrap}
+.t-users{border:1px solid var(--line);background:var(--sea-soft);color:var(--sea)}
+.t-open{background:var(--sky-soft);color:var(--sky)}
+.t-demo{background:var(--gold-soft);color:var(--gold)}
+.t-code{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.t-wip{background:var(--fg);color:var(--bg)}
+
+/* placeholder for content still to add */
+.todo{border:1.5px dashed var(--line);border-radius:8px;padding:6px 10px;font-size:13.5px;color:var(--muted)}
+.visual{aspect-ratio:4/3;max-width:100%;border-radius:8px;border:1.5px dashed var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--bg)}
+
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:36px;border-top:2px solid var(--fg);padding-top:24px}
+.about h2{font-size:26px}
+.about p{margin:0 0 14px;max-width:62ch}
+footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:860px){
+  .strengths,.cards.three{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about{grid-template-columns:minmax(0,1fr);gap:12px}
+}
+@media (max-width:560px){
+  body{padding-inline:16px}
+  .wrap{gap:60px;padding-block:36px 56px}
+  .strengths,.cards,.cards.three{grid-template-columns:minmax(0,1fr)}
+  .card,.str{padding:18px}
+}
+
+.shot,.logo{margin:-22px -22px 4px;border-radius:10px 10px 0 0;aspect-ratio:16/10;max-width:calc(100% + 44px);background:var(--bg);border-bottom:1px solid var(--line);overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.logo{display:grid;place-items:center}
+.logo img{width:88px;height:88px;object-fit:contain;border-radius:20px}
+.logo .soon{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.logo .word{font-family:var(--display);font-size:40px;font-weight:700;color:var(--accent)}
+@media (max-width:560px){.shot,.logo{margin:-18px -18px 4px;max-width:calc(100% + 36px)}}
+
+.t-private{background:var(--bg);color:var(--muted);border:1px dashed var(--line)}
+.earlier{font-size:13.5px;color:var(--muted);margin:0}
+.earlier a{font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="top">
+      <span class="eyebrow">Projects · Vancouver</span>
+      <a class="eyebrow" href="https://github.com/nweinberg97">github.com/nweinberg97</a>
+    </div>
+    <h1>I <span class="a">understand people</span>, I <span class="b">come up with ideas</span>, and I <span class="c">actually build them</span>.</h1>
+    <p class="lede">I combine user empathy and product sense with AI-assisted building. These are the projects I've built that live on GitHub. Some have real users, some are prototypes with sample data, and some are still in progress. Each one is labelled, so you know exactly what you're looking at.</p>
+    <div class="legend" aria-label="What the labels mean">
+      <span class="tag t-users">Real users</span>
+      <span class="tag t-open">Anyone can use it</span>
+      <span class="tag t-demo">Demo, sample data</span>
+      <span class="tag t-code">Code only</span>
+      <span class="tag t-wip">In progress</span>
+    </div>
+  </header>
+
+  <div class="strengths">
+    <div class="str"><h3>User empathy</h3><p>A lot of these started with a real person. My sister asked for Chicken Little, someone is testing NomNoms right now, and Search for the Good began with interviews.</p></div>
+    <div class="str"><h3>Idea generation</h3><p>20+ products so far, from a feedback tool you talk to, to a couples card game, to a paddleboard club for founders.</p></div>
+    <div class="str"><h3>Execution</h3><p>I ship real things: web apps, a Chrome extension, a Mac app, AI tools that run right in your browser, and a neighbourhood community with real sign-ups.</p></div>
+  </div>
+
+  <section aria-labelledby="s-live" class="big">
+    <div class="sh"><h2 id="s-live">Live and in use</h2><p>Things people are using now, or that anyone can pick up today.</p></div>
+    <div class="cards">
+      <article class="card">
+        <div class="head"><h3>NomNoms</h3><span class="tag t-users">Real users</span></div>
+        <p class="one">The baby book that builds itself. Add photos, videos and the occasional note. NomNoms sorts them into chapters, picks the best photos and designs every page, so you get a book to read, share, download or watch as a short film.</p>
+        <p class="where"><b>Where it's at:</b> being tested by a real user. You can look around with a demo family.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/NomNoms/">Try it ↗</a><a href="https://github.com/nweinberg97/NomNoms">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Kitside</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">A local community for Kitsilano. Find interesting people nearby by what they do and what they're building, see what's happening this week, and say “I'm in.”</p>
+        <p class="where"><b>Where it's at:</b> real sign-up and a real database, so neighbours can actually join. A demo mode with sample neighbours lets you look around first.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Kitside/">Try it ↗</a><a href="https://github.com/nweinberg97/Kitside">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Sedi</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">One workspace for tasks, life goals, time and notes, connected by a single card system you drag between tools. Your data stays on your device, and it works offline.</p>
+        <p class="origin">Grew out of my earlier tools: <a href="https://github.com/nweinberg97/taskly">Taskly</a>, <a href="https://github.com/nweinberg97/Boardly">Boardly</a>, <a href="https://github.com/nweinberg97/Timely">Timely</a> and <a href="https://github.com/nweinberg97/Brainly">Brainly</a>.</p>
+        <p class="where"><b>Where it's at:</b> fully usable. Some features and visual polish are still being refined.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/sedi/">Try it ↗</a><a href="https://github.com/nweinberg97/sedi">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Drift</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">A quiet focus timer for Mac. Press ⌥ Space from any app, type 25, and get back to work. Voice commands, multiple timers, and no account needed.</p>
+        <p class="where"><b>Where it's at:</b> installs on any Mac with one copy-paste command.</p>
+        <div class="links"><a href="https://github.com/nweinberg97/Drift">Get it on GitHub ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Dub Club</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">Your words, new accent. Record a line, pick British or American, and hear it re-spoken in that accent with your own timing. Compare the two, then download it.</p>
+        <p class="where"><b>Where it's at:</b> live and free. Everything runs in your browser, so your voice never goes to a server.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/DubClub/">Try it ↗</a><a href="https://github.com/nweinberg97/DubClub">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>WingIt</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">A pocket improv gym. It deals you a ridiculous situation, you answer out loud, and a coach tells you what landed and what to try next. Then shuffle and go again.</p>
+        <p class="where"><b>Where it's at:</b> live, with no account needed. Your voice never leaves your device.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/WingIt/">Try it ↗</a><a href="https://github.com/nweinberg97/WingIt">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Coded</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">Learn how software actually works, even if you’re not an engineer. 170 concept cards you answer in your own words, plus real coding challenges with a checker that explains what your code did.</p>
+        <p class="where"><b>Where it's at:</b> live and free, with no account. Your progress is saved on your device.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Coded/">Try it ↗</a><a href="https://github.com/nweinberg97/Coded">Code ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-products">
+    <div class="sh"><h2 id="s-products">Products and prototypes</h2><p>Real ideas, built as working prototypes you can click through.</p></div>
+    <div class="cards">
+      <article class="card">
+        <div class="head"><h3>Search for the Good</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">A search engine for the people, products and projects making the world better. Search in plain language, or keep scrolling a feed of good things. Over 100 real examples from 15 countries.</p>
+        <p class="origin">Started as LinkedIn posts and interviews, then an early prototype I showed to organizations. Now it's a working, coded product. JumpIn is its planned social side.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Search-for-the-Good/">Try it ↗</a><a href="https://github.com/nweinberg97/Search-for-the-Good">Code ↗</a><a href="https://nweinberg97.github.io/JumpIn/">Try JumpIn ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>FORM</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">Helps physio patients actually do their home exercises. Patients get one clear session for today, and their physio sees how it went.</p>
+        <p class="where"><b>Try:</b> switch between the patient's app and the physio's dashboard.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Form/">Try it ↗</a><a href="https://github.com/nweinberg97/Form">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Sogo</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">A concept exploring behavior change and incentives: bet on yourself instead of sports. Put money behind a goal, a sponsor matches it, friends can back you, and you earn the reward when you hit it.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Sogo/">Try it ↗</a><a href="https://github.com/nweinberg97/Sogo">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>CoursePack</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">Turns YouTube into a course. It picks which videos are worth watching, puts them in order, and helps you check that you actually learned it.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/CoursePack/">Try it ↗</a><a href="https://github.com/nweinberg97/CoursePack">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Base</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">A weekly set of 12 seasonal ingredients, prepped into reusable glass containers for local pickup in Vancouver, with recipes to cook that week.</p>
+        <p class="where"><b>Note:</b> nothing can be bought yet. Prices are estimates.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Base/">Try it ↗</a><a href="https://github.com/nweinberg97/Base">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>VanRadar</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">Discover companies being built in Vancouver. Browse by category on a radar, search, or shuffle.</p>
+        <p class="where"><b>Note:</b> the company list doesn't update on its own yet.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/VanRadar/">Try it ↗</a><a href="https://github.com/nweinberg97/VanRadar">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Circles</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">Small groups of 5–7 people working toward the same health goal, with weekly check-ins, a shared challenge and a group leader.</p>
+        <p class="origin">Started as a university project. Now it's built.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Circles/">Try it ↗</a><a href="https://github.com/nweinberg97/Circles">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Memo</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">A personal feed of local fitness classes, clubs and studios, plus a side for businesses to share the content they already have.</p>
+        <p class="origin">Started as a university project. Now it's built.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/memo/">Try it ↗</a><a href="https://github.com/nweinberg97/memo">Code ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-dev">
+    <div class="sh"><h2 id="s-dev">In development</h2><p>Working, but not finished yet.</p></div>
+    <div class="cards three">
+      <article class="card">
+        <div class="head"><h3>Sonar</h3><span class="tag t-wip">In progress</span></div>
+        <p class="one">Feedback you can just say out loud. People answer questions by talking instead of typing, and you get transcripts and a short summary.</p>
+        <p class="where"><b>Where it's at:</b> built in GitHub Codespaces. Not online yet.</p>
+        <div class="links"><a href="https://github.com/nweinberg97/Sonar">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Magic Paste</h3><span class="tag t-wip">In progress</span></div>
+        <p class="one">A Chrome extension that fixes formatting when you paste, like a ChatGPT answer into Gmail.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Magic-Paste/">See it ↗</a><a href="https://github.com/nweinberg97/Magic-Paste">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Chicken Little</h3><span class="tag t-wip">In progress</span></div>
+        <p class="one">A calm guide to a baby's first foods: what to serve, what's been tried, and allergen reminders. Every fact comes from a health agency.</p>
+        <p class="origin">My sister asked for it.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Chicken-Little/">Try it ↗</a><a href="https://github.com/nweinberg97/Chicken-Little">Code ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-next">
+    <div class="sh"><h2 id="s-next">Coming next</h2></div>
+    <div class="cards">
+      <article class="card">
+        <div class="head"><h3>Pace</h3><span class="tag t-wip">Launching next summer</span></div>
+        <p class="one">A sunset paddleboard community for founders in Kitsilano. A small group meets at Jericho Beach once or twice a week. The paddle is the front door; the people are the reason to come back.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Pace/">Preview the site ↗</a><a href="https://github.com/nweinberg97/Pace">Code ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-fun">
+    <div class="sh"><h2 id="s-fun">Just for fun</h2><p>Ideas I couldn't stop thinking about, so I built them.</p></div>
+    <div class="cards">
+      <article class="card">
+        <div class="head"><h3>Chaotic Mischief</h3><span class="tag t-open">Anyone can use it</span></div>
+        <p class="one">A card game for couples stuck in a rut. Draw a card, cause some problems, and the first to 21 Chaos Credits wins the night.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Chaotic-Mischief/">Play it ↗</a><a href="https://github.com/nweinberg97/Chaotic-Mischief">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Collab</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">A product I think Spotify should build: it tells artists who they should make music with, and why.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Collab/">Try it ↗</a><a href="https://github.com/nweinberg97/Collab">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Tender</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">A dating app built around food. He posts what he cooks, she rates the food instead of the face, and the first date is always a dinner out.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Tender/">Try it ↗</a><a href="https://github.com/nweinberg97/Tender">Code ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Bucketlist</h3><span class="tag t-demo">Demo, sample data</span></div>
+        <p class="one">Your bucket list, made social, so people nearby can help you make things happen.</p>
+        <div class="links"><a href="https://nweinberg97.github.io/Bucketlist/">Try it ↗</a><a href="https://github.com/nweinberg97/Bucketlist">Code ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-private">
+    <div class="sh"><h2 id="s-private">Private projects</h2><p>These live in private repos, so there's no public link. Happy to walk through them on a call.</p></div>
+    <div class="cards three">
+      <article class="card">
+        <div class="head"><h3>Domino Swarm</h3><span class="tag t-private">Private repo</span></div>
+        <p class="one">An AI pipeline that finds, checks and researches sales leads every day, so a sales team starts each morning with a list of qualified companies and personalized openers.</p>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Learning Loop</h3><span class="tag t-private">Private repo</span></div>
+        <p class="one">A rep talks for 60 seconds after a sales call, and it turns that into a clean CRM note, spots patterns across the team, and suggests playbook changes for a manager to approve.</p>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Growth Signal</h3><span class="tag t-private">Private repo</span></div>
+        <p class="one">Watches companies for signs of fast growth, like hiring sprees, acquisitions and product launches, and ranks who a sales team should call first.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <span>Nitai Weinberg · Vancouver</span>
+    <span>Last updated October 2026 · <a href="https://github.com/nweinberg97">All code on GitHub ↗</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
