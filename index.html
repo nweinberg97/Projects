@@ -129,6 +129,14 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;
 .more dd{margin:0;color:var(--fg)}
 .more + .links{margin-top:0}
 @media (max-width:560px){.more dl div{grid-template-columns:minmax(0,1fr);gap:1px}}
+.chip{font:inherit;font-family:var(--mono);font-size:11.5px;cursor:pointer;border:1px solid var(--line);transition:background .12s ease,color .12s ease}
+.legend .chip{background:var(--surface);color:var(--fg)}
+.chip:hover{border-color:var(--fg)}
+.chip:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.legend .chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.legend-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.count{font-family:var(--mono);font-size:11.5px}
+.is-hidden{display:none!important}
 </style>
 </head>
 <body>
@@ -141,12 +149,14 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;
     </div>
     <h1>I <span class="a">understand people</span>, I <span class="b">come up with ideas</span>, and I <span class="c">actually build them</span>.</h1>
     <p class="lede">I combine user empathy and product sense with AI-assisted building. These are the projects I've built that live on GitHub. Some have real users, some are prototypes with sample data, and some are still in progress. Each one is labelled, so you know exactly what you're looking at.</p>
-    <div class="legend" aria-label="What the labels mean">
-      <span class="tag t-users">Real users</span>
-      <span class="tag t-open">Anyone can use it</span>
-      <span class="tag t-demo">Demo, sample data</span>
-      <span class="tag t-code">Code only</span>
-      <span class="tag t-wip">In progress</span>
+    <div class="legend" role="group" aria-label="Filter projects by status">
+      <span class="legend-label">Filter:</span>
+      <button type="button" class="tag t-users chip" data-filter="t-users" aria-pressed="false">Real users</button>
+      <button type="button" class="tag t-open chip" data-filter="t-open" aria-pressed="false">Anyone can use it</button>
+      <button type="button" class="tag t-demo chip" data-filter="t-demo" aria-pressed="false">Demo, sample data</button>
+      <button type="button" class="tag t-wip chip" data-filter="t-wip" aria-pressed="false">In progress</button>
+      <button type="button" class="tag t-private chip" data-filter="t-private" aria-pressed="false">Private repo</button>
+      <span class="count" id="count" aria-live="polite"></span>
     </div>
   </header>
 
@@ -400,5 +410,23 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;
   </footer>
 
 </div>
+<script>
+(function(){
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var cards=[].slice.call(document.querySelectorAll('article.card'));
+  var sections=[].slice.call(document.querySelectorAll('section[aria-labelledby]'));
+  var count=document.getElementById('count');
+  function apply(f){
+    var shown=0;
+    cards.forEach(function(c){var tag=c.querySelector('.head .tag');var ok=!f||(tag&&tag.classList.contains(f));c.classList.toggle('is-hidden',!ok);if(ok)shown++;});
+    sections.forEach(function(s){s.classList.toggle('is-hidden',!s.querySelector('article.card:not(.is-hidden)'));});
+    chips.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.filter===f));});
+    var st=document.querySelector('.strengths'); if(st) st.classList.toggle('is-hidden',!!f);
+    count.textContent=f?(shown+(shown===1?' project':' projects')+' · tap again to show all'):'';
+  }
+  var current=null;
+  chips.forEach(function(b){b.addEventListener('click',function(){current=(current===b.dataset.filter)?null:b.dataset.filter;apply(current);});});
+})();
+</script>
 </body>
 </html>
