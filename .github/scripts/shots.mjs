@@ -38,7 +38,11 @@ for (const [name, views] of Object.entries(cfg.projects)) {
   if (only.length && !only.includes(name)) continue;
   for (const [i, v] of views.entries()) {
     // Some sites change with the time of day; a view can pin the time zone and clock.
-    const vctx = v.timezone ? await browser.newContext({ viewport: cfg.viewport, colorScheme: "light", reducedMotion: "reduce", timezoneId: v.timezone }) : ctx;
+    const vctx = v.timezone || v.geo ? await browser.newContext({
+      viewport: cfg.viewport, colorScheme: "light", reducedMotion: "reduce",
+      ...(v.timezone ? { timezoneId: v.timezone } : {}),
+      ...(v.geo ? { geolocation: { latitude: v.geo[0], longitude: v.geo[1] }, permissions: ["geolocation"] } : {}),
+    }) : ctx;
     const page = await vctx.newPage();
     if (v.time) await page.clock.setFixedTime(new Date(v.time));
     const url = v.url || cfg.base + v.path;

@@ -25,7 +25,13 @@
     ],
     "sedi": [
       {
-        "path": "/sedi/"
+        "path": "/sedi/",
+        "timezone": "America/Vancouver",
+        "time": "2026-10-15T19:30:00Z",
+        "geo": [
+          49.2684,
+          -123.1683
+        ]
       }
     ],
     "drift": [
