@@ -121,10 +121,10 @@
     ],
     "bluerig": [
       {
-        "url": "http://localhost:3001/"
+        "path": "/Bluerig/"
       },
       {
-        "path": "/Bluerig/"
+        "path": "/Bluerig/demo/"
       }
     ],
     "reclo": [
