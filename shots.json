@@ -251,20 +251,6 @@
         "path": "/Let-Her-Cook/#/recipes/shakshuka/cook"
       },
       {
-        "path": "/Let-Her-Cook/#/add",
-        "steps": [
-          {
-            "click": "Paste text"
-          },
-          {
-            "click": "Try an example"
-          },
-          {
-            "button": "Turn into a recipe"
-          }
-        ]
-      },
-      {
         "path": "/Let-Her-Cook/#/add"
       },
       {
@@ -272,6 +258,9 @@
       },
       {
         "path": "/Let-Her-Cook/#/data"
+      },
+      {
+        "path": "/Let-Her-Cook/#/"
       }
     ]
   }
