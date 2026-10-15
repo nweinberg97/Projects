@@ -254,7 +254,7 @@
         "path": "/Let-Her-Cook/#/add",
         "steps": [
           {
-            "button": "Paste text"
+            "click": "Paste text"
           },
           {
             "click": "Try an example"
