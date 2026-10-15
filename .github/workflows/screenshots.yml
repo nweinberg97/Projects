@@ -7,6 +7,9 @@ on:
       - shots.json
       - .github/scripts/shots.mjs
 
+permissions:
+  contents: write
+
 jobs:
   shots:
     runs-on: ubuntu-latest
@@ -18,8 +21,13 @@ jobs:
       - run: npm install --no-save playwright@1.48.2
       - run: npx playwright install --with-deps chromium
       - run: node .github/scripts/shots.mjs
-      - uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: shots/
-          retention-days: 7
+      # Raw screenshots go to a separate "screenshots" branch for review; the live page never uses this branch.
+      - name: Save to the screenshots branch
+        run: |
+          cd shots
+          git init -q -b screenshots
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Screenshots from run ${{ github.run_id }}"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" screenshots
