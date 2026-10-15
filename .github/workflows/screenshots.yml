@@ -2,6 +2,10 @@ name: Project screenshots
 
 on:
   workflow_dispatch:
+    inputs:
+      only:
+        description: "Only these projects (comma-separated), blank for all"
+        required: false
   push:
     paths:
       - shots.json
@@ -20,7 +24,19 @@ jobs:
           node-version: 20
       - run: npm install --no-save playwright@1.48.2
       - run: npx playwright install --with-deps chromium
+      # Context has no public site, so run its landing page here (local mode, no credentials needed).
+      - name: Start Context locally
+        run: |
+          git clone -q --depth 1 https://github.com/nweinberg97/Context.git /tmp/context
+          cd /tmp/context
+          cp .env.example .env.local
+          npm install --no-audit --no-fund
+          (npx next dev -p 3000 > /tmp/context.log 2>&1 &)
+          for i in $(seq 1 60); do curl -sf http://localhost:3000/ > /dev/null && break; sleep 3; done
+          curl -s -o /dev/null -w "Context landing: %{http_code}\n" http://localhost:3000/ || tail -30 /tmp/context.log
       - run: node .github/scripts/shots.mjs
+        env:
+          ONLY: ${{ github.event.inputs.only }}
       # Raw screenshots go to a separate "screenshots" branch for review; the live page never uses this branch.
       - name: Save to the screenshots branch
         run: |
