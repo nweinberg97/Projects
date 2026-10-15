@@ -225,6 +225,54 @@
       {
         "url": "http://localhost:3000/"
       }
+    ],
+    "lhc-case": [
+      {
+        "path": "/Let-Her-Cook/#/data",
+        "steps": [
+          {
+            "upload": [
+              "input[type=file]",
+              ".github/fixtures/let-her-cook-sample.json"
+            ]
+          },
+          {
+            "button": "Restore"
+          },
+          {
+            "goto": "/Let-Her-Cook/#/"
+          }
+        ]
+      },
+      {
+        "path": "/Let-Her-Cook/#/recipes/shakshuka"
+      },
+      {
+        "path": "/Let-Her-Cook/#/recipes/shakshuka/cook"
+      },
+      {
+        "path": "/Let-Her-Cook/#/add",
+        "steps": [
+          {
+            "button": "Paste text"
+          },
+          {
+            "click": "Try an example"
+          },
+          {
+            "button": "Turn into a recipe"
+          }
+        ]
+      },
+      {
+        "path": "/Let-Her-Cook/#/add"
+      },
+      {
+        "path": "/Let-Her-Cook/#/collections"
+      },
+      {
+        "path": "/Let-Her-Cook/#/data"
+      }
     ]
   }
 }

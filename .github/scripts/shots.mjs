@@ -52,6 +52,9 @@ for (const [name, views] of Object.entries(cfg.projects)) {
       for (const step of v.steps || []) {
         if (step.fill) await page.locator(step.fill[0]).fill(step.fill[1], { timeout: 10000 });
         if (step.click) await page.getByText(step.click, { exact: false }).first().click({ timeout: 10000 });
+        if (step.button) await page.getByRole("button", { name: step.button, exact: true }).first().click({ timeout: 10000 });
+        if (step.upload) await page.locator(step.upload[0]).first().setInputFiles(step.upload[1]);
+        if (step.goto) await page.goto(cfg.base + step.goto, { waitUntil: "load" });
         await page.waitForTimeout(1500);
       }
       if (v.click) {
