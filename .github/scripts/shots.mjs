@@ -37,7 +37,10 @@ const only = (process.env.ONLY || "").split(",").map((s) => s.trim()).filter(Boo
 for (const [name, views] of Object.entries(cfg.projects)) {
   if (only.length && !only.includes(name)) continue;
   for (const [i, v] of views.entries()) {
-    const page = await ctx.newPage();
+    // Some sites change with the time of day; a view can pin the time zone and clock.
+    const vctx = v.timezone ? await browser.newContext({ viewport: cfg.viewport, colorScheme: "light", reducedMotion: "reduce", timezoneId: v.timezone }) : ctx;
+    const page = await vctx.newPage();
+    if (v.time) await page.clock.setFixedTime(new Date(v.time));
     const url = v.url || cfg.base + v.path;
     try {
       await page.goto(url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => page.goto(url, { waitUntil: "load" }));
@@ -59,6 +62,7 @@ for (const [name, views] of Object.entries(cfg.projects)) {
       console.log("FAIL", name, i, url, String(e).slice(0, 160));
     }
     await page.close();
+    if (vctx !== ctx) await vctx.close();
   }
 }
 await browser.close();

@@ -163,7 +163,15 @@
     ],
     "sunroll": [
       {
-        "path": "/Sunroll/"
+        "path": "/Sunroll/",
+        "timezone": "America/Vancouver",
+        "time": "2026-10-15T19:30:00Z"
+      },
+      {
+        "path": "/Sunroll/",
+        "timezone": "America/Vancouver",
+        "time": "2026-10-15T19:30:00Z",
+        "click": "See a live demo"
       }
     ],
     "pace": [
