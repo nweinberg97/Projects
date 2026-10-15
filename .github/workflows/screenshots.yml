@@ -34,6 +34,15 @@ jobs:
           (npx next dev -p 3000 > /tmp/context.log 2>&1 &)
           for i in $(seq 1 60); do curl -sf http://localhost:3000/ > /dev/null && break; sleep 3; done
           curl -s -o /dev/null -w "Context landing: %{http_code}\n" http://localhost:3000/ || tail -30 /tmp/context.log
+      # Bluerig's landing page isn't hosted (only its demo is), so run it here too. No Supabase keys = public pages only.
+      - name: Start Bluerig locally
+        run: |
+          git clone -q --depth 1 https://github.com/nweinberg97/Bluerig.git /tmp/bluerig
+          cd /tmp/bluerig
+          npm install --no-audit --no-fund
+          (npx next dev -p 3001 > /tmp/bluerig.log 2>&1 &)
+          for i in $(seq 1 60); do curl -sf http://localhost:3001/ > /dev/null && break; sleep 3; done
+          curl -s -o /dev/null -w "Bluerig landing: %{http_code}\n" http://localhost:3001/ || tail -30 /tmp/bluerig.log
       - run: node .github/scripts/shots.mjs
         env:
           ONLY: ${{ github.event.inputs.only }}

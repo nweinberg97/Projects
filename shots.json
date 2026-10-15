@@ -121,6 +121,9 @@
     ],
     "bluerig": [
       {
+        "url": "http://localhost:3001/"
+      },
+      {
         "path": "/Bluerig/"
       }
     ],
