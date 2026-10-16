@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Let Her Cook</title>
+  <rect width="64" height="64" rx="16" fill="#FF7A3D"/>
+  <circle cx="12.5" cy="34" r="11" fill="#AEB9C7"/>
+  <circle cx="51.5" cy="34" r="11" fill="#AEB9C7"/>
+  <circle cx="13.5" cy="35" r="6.5" fill="#F6C3CF"/>
+  <circle cx="50.5" cy="35" r="6.5" fill="#F6C3CF"/>
+  <ellipse cx="32" cy="41.5" rx="20" ry="18.5" fill="#C3CCD7"/>
+  <rect x="19.5" y="17" width="25" height="8.5" rx="3" fill="#F4EEE5"/>
+  <circle cx="23" cy="13" r="6.8" fill="#fff"/>
+  <circle cx="41" cy="13" r="6.8" fill="#fff"/>
+  <circle cx="32" cy="9.5" r="8.3" fill="#fff"/>
+  <ellipse cx="23.5" cy="40" rx="2.6" ry="2.9" fill="#262A33"/>
+  <ellipse cx="40.5" cy="40" rx="2.6" ry="2.9" fill="#262A33"/>
+  <ellipse cx="18.5" cy="48" rx="3.4" ry="2.2" fill="#F59AAE" opacity=".85"/>
+  <ellipse cx="45.5" cy="48" rx="3.4" ry="2.2" fill="#F59AAE" opacity=".85"/>
+  <path d="M32 41.5c4.6 0 6.3 3.3 6.3 6.1 0 3.6-2.8 6.1-6.3 6.1s-6.3-2.5-6.3-6.1c0-2.8 1.7-6.1 6.3-6.1z" fill="#3A3F4B"/>
+</svg>
