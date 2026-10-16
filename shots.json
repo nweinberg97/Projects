@@ -228,16 +228,11 @@
     ],
     "lhc-case": [
       {
-        "path": "/Let-Her-Cook/#/data",
+        "path": "/Let-Her-Cook/#/",
+        "time": "2026-10-14T18:30:00Z",
         "steps": [
           {
-            "upload": [
-              "input[type=file]",
-              ".github/fixtures/let-her-cook-sample.json"
-            ]
-          },
-          {
-            "button": "Restore"
+            "click": "Peek at"
           },
           {
             "goto": "/Let-Her-Cook/#/"
@@ -245,22 +240,24 @@
         ]
       },
       {
-        "path": "/Let-Her-Cook/#/recipes/shakshuka"
+        "path": "/Let-Her-Cook/#/recipes/sample-sheet-pan-chicken",
+        "time": "2026-10-14T18:30:00Z"
       },
       {
-        "path": "/Let-Her-Cook/#/recipes/shakshuka/cook"
+        "path": "/Let-Her-Cook/#/recipes/sample-sheet-pan-chicken/cook",
+        "time": "2026-10-14T18:30:00Z"
       },
       {
-        "path": "/Let-Her-Cook/#/add"
+        "path": "/Let-Her-Cook/#/add",
+        "time": "2026-10-14T18:30:00Z"
       },
       {
-        "path": "/Let-Her-Cook/#/collections"
+        "path": "/Let-Her-Cook/#/data",
+        "time": "2026-10-14T18:30:00Z"
       },
       {
-        "path": "/Let-Her-Cook/#/data"
-      },
-      {
-        "path": "/Let-Her-Cook/#/"
+        "path": "/Let-Her-Cook/#/recipes/sample-peach-burrata-salad",
+        "time": "2026-10-14T18:30:00Z"
       }
     ]
   }
